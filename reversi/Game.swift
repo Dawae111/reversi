@@ -24,15 +24,14 @@ class Game{
     /// Terrisa
     /// Checks if the one player has won the game
     func checkWin()->Bool{
-        var currBoard = board.currentBoard
         
-        var p1AvaliableMove = p1.givePotientialMove(currBoard).count
-        if p1AvaliableMove!=0 {
+        var p1AvaliableMove = p1.givePotientialMove(board: board).count
+        if p1AvaliableMove != 0 {
             return false
         }
         
-        var p2AvaliableMove = p2.givePotientialMove(currBoard).count
-        if p2AvaliableMove!=0 {
+        var p2AvaliableMove = p2.givePotientialMove(board: board).count
+        if p2AvaliableMove != 0 {
             return false
         }
         
@@ -44,7 +43,8 @@ class Game{
     /// this function should be called when a player times out
     func timeOut()->Void{
         let moves = activePlayer.givePotientialMove(board: board);
-        board.update(move: Int.random(in: 0..<moves.count), color: activePlayer.color)
+        let a = Int.random(in: 0..<moves.count)
+        board.update(move: [moves[a].0,moves[a].1], color: activePlayer.colour)
     }
     
 }

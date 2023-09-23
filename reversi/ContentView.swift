@@ -15,9 +15,10 @@ struct ContentView: View {
     @State var time:Int = 10
     @State var unlimitedtime = false
     @State var gamestarted:Bool = false
+    @State var runningGame = Game()
     var body: some View {
         if gamestarted{
-            
+            GameBoardView(game:runningGame)
         }
         else{
             MenuView(time:$time,unlimitedtime: $unlimitedtime,gamestarted: $gamestarted)

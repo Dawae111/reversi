@@ -19,11 +19,11 @@ class Player{
     var colour:Int = 0
     /// The score of the player
     var score:Int = 0
-   
+    
     init(colour:Int){
         self.colour = colour
     }
-   
+    
     /// Edward
     /// This returns a list of squares where there is a potential move
     /// [(x,y),(x,y) ....]
@@ -37,12 +37,12 @@ class Player{
                     if checkLegalInDirection(board: board,n: n,row: row,col: col,deltaRow: -1,deltaCol: -1), checkLegalInDirection(board: board,n: n,row: row,col: col,deltaRow: -1,deltaCol: 0), checkLegalInDirection(board: board,n: n,row: row,col: col,deltaRow: -1,deltaCol: 1), checkLegalInDirection(board: board,n: n,row: row,col: col,deltaRow: 0,deltaCol: -1), checkLegalInDirection(board: board,n: n,row: row,col: col,deltaRow: 0,deltaCol: 1), checkLegalInDirection(board: board,n: n,row: row,col: col,deltaRow: 1,deltaCol: -1), checkLegalInDirection(board: board,n: n,row: row,col: col,deltaRow: 1,deltaCol: 0), checkLegalInDirection(board: board,n: n,row: row,col: col,deltaRow: 1,deltaCol: 1) {
                         arr[numOfAvailMove] = (row,col)
                         numOfAvailMove+=1
-                }
+                    }
                 }
             }
         }
-
-
+        
+        
         return arr
     }
     
@@ -70,12 +70,12 @@ class Player{
                         isLegal = true
                         break
                     }
-
-
-                    }
-
-
-                 }
+                    
+                    
+                }
+                
+                
+            }
         } else {
             if (board.currentBoard[row+deltaRow][col+deltaCol] != WHITE){
                 isLegal = false
@@ -93,12 +93,12 @@ class Player{
                     } else if (positionInBounds(n: n,row: row+numOfDelta*deltaRow,col: col+numOfDelta*deltaCol) && board.currentBoard[row+numOfDelta*deltaRow][col+numOfDelta*deltaCol] == BLACK){//supposedly is black
                         isLegal = true
                     }
-
-
+                    
+                    
                 }
             }
-
-
+            
+            
         }
         return isLegal
     }
@@ -115,9 +115,9 @@ class Player{
     func checkScore(board: GameBoard) -> Int {
         var playerScore = 0
         
-        for row in 0..<board.count {
-            for col in 0..<board[row].count {
-                if board[row][col] == color {
+        for row in 0..<board.currentBoard.count {
+            for col in 0..<board.currentBoard[row].count {
+                if board.currentBoard[row][col] == colour {
                     playerScore += 1
                 }
             }
@@ -126,17 +126,6 @@ class Player{
         score = playerScore
         return playerScore
     }
-
-"""
-    Below is what Eric originally wrote:
-
-        func checkScore(board:GameBoard)->Int{
-            return 0
-        }
-       
-    }
-"""
-
-
+}
 
 
